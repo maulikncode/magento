@@ -1,0 +1,109 @@
+/**
+ * Developer: Rene Voorberg
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/ 
+ * 
+*/
+i.glace,
+a.popupplusAction,
+a.popup_back,
+.adminhtml-popupplus-template td.a-left,
+.adminhtml-slider-index #anchor-content button,
+.adminhtml-slider-index #anchor-content label,
+.adminhtml-slider-index #anchor-content h3,
+.adminhtml-slider-index #anchor-content h4,
+.adminhtml-slider-index #anchor-content input,
+.adminhtml-slider-index #anchor-content li a,
+
+.adminhtml-slider-edit #anchor-content button,
+.adminhtml-slider-edit #anchor-content label,
+.adminhtml-slider-edit #anchor-content h3,
+.adminhtml-slider-edit #anchor-content h4,
+.adminhtml-slider-edit #anchor-content input,
+.adminhtml-slider-edit #anchor-content li a,
+.adminhtml-slider-edit #anchor-content p
+
+{
+	font-family: 'Special Elite', cursive !important;
+	letter-spacing: 1px;
+}
+
+.adminhtml-popupplus-template td.a-left
+{
+	font-size:18px;
+}
+
+#logo_cmsideas a
+{
+	display:inline-block;
+	width:100%;
+	background:url("logo_cmsideas.png") no-repeat scroll center top #FFFFFF;
+	height:85px;
+}
+
+.adminhtml-slider-index #anchor-content button.add span,
+.adminhtml-slider-index #anchor-content button.save span,
+.adminhtml-slider-index #anchor-content button.add span,
+.adminhtml-slider-index #anchor-content button.delete span,
+
+.adminhtml-slider-edit #anchor-content button.add span,
+.adminhtml-slider-edit #anchor-content button.save span,
+.adminhtml-slider-edit #anchor-content button.add span,
+.adminhtml-slider-edit #anchor-content button.delete span
+{
+	background-image:none !important;
+	padding-left:0px;
+}
+
+a.popupplusAction,
+a.popup_back
+{
+	background-color:#FFAC47;
+    border-color: #ED6502 #A04300 #A04300 #ED6502;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 12px arial,helvetica,sans-serif;
+    padding: 1px 7px 2px;
+    text-align: center !important;
+    white-space: nowrap;
+    display:inline-block;
+    min-width:73px;
+    text-decoration: none;
+    margin:5px 0px;
+}
+a.popup_back
+{
+	float:right;
+}
+
+
+.adminhtml-popupplus-edit p.nm
+{
+	display:none;
+}
+
+.adminhtml-popupplus-edit td.value:hover p.nm
+{
+	display:block;
+	position: relative;
+}
+
+.adminhtml-popupplus-edit td.value:hover i.glace
+{
+	background-color: #EB5E00;
+    max-width: 200px;
+    padding: 10px;
+    position: absolute;
+    right: -200px;
+    top: -20px;
+    z-index: 99999;
+    color:#FFFFFF;
+    font-size:14px;
+}
+
+.adminhtml-popupplus-edit td.value:hover i.glace a
+{
+	color:#ffffff;
+}

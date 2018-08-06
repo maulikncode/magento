@@ -1,0 +1,69 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php echo $this->getChildHtml('aw_blog_footer') ?>
+<?php if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) :  ?>
+	<?php echo $this->getChildHtml('tm_googlemap_embed') ?>
+<?php endif;  ?>
+<div class="footer-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="footer">
+					<div class="footer-top">
+						<?php echo $this->getChildHtml('left.newsletter'); ?>
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('list_icon')->toHtml() ?>
+					</div>
+					  <p id="back-top"><a href="#top"><span><?php echo $this->__('Top') ?></span></a> </p>
+					  <div class="footer-cols-wrapper">
+						<div class="footer-col">			
+							<h4><?php echo $this->__('Information') ?></h4>
+							<div class="footer-col-content">
+								<?php echo $this->getChildHtml('cms_footer_links') ?>
+								<?php echo $this->getChildHtml('footer_links') ?>
+							</div>
+						</div>
+						<?php echo $this->getChildHtml('footer_list') ?>
+						<?php // echo $this->getChildHtml('blog') ?>
+						<div class="clear"></div>
+						<?php // echo $this->getChildHtml('paypal.partner.right.logo'); ?>
+					  </div>
+					<div class="footer-shadow">
+						<address><?php echo $this->getCopyright() ?></address>
+						<div class="clear"></div>
+						<?php echo $this->getChildHtml('store_switcher') ?>
+							<?php $current_page = Mage::app()->getFrontController()->getRequest()->getRouteName(); 
+								if ($current_page == 'cms'):
+									echo '<!--{%FOOTER_LINK}-->';
+								endif;
+							?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="block block-list block-manufacturer">
+	<?php 
+	$attribute = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', 'manufacturer');
+	$valuesCollection = Mage::getResourceModel('eav/entity_attribute_option_collection')->setAttributeFilter($attribute->getData('attribute_id'))->setStoreFilter(0, false);
+	$preparedManufacturers = array();            
+	  foreach($valuesCollection as $value) {
+	  	$preparedManufacturers[$value->getOptionId()] = $value->getValue();
+	  }   
+	  if (count($preparedManufacturers)) {
+	  	echo "<div class='block-title'><strong><span>".$this->__('Brands')."</span></strong></div>";
+		echo "<div class='block-content'><ul>";
+	  	foreach($preparedManufacturers as $optionId => $value) {
+	  		echo "<li class='item'><a href=".Mage::getURL()."catalogsearch/advanced/result/?manufacturer=".$optionId.">" . $value . "</a></li>";
+	  	}
+	  	echo "</ul></div>";
+	  }
+	?>
+</div>

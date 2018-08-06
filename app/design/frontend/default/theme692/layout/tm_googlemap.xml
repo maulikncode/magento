@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/tm/googlemap/tm_googlemap.css</name></action>
+		</reference>
+		<reference name="footer">
+			<block type="core/template" name="tm_googlemap_embed" as="tm_googlemap_embed" template="tm/googlemap/embed_map.phtml"/>
+		</reference>
+	</default>
+	<contacts_index_index>
+		<reference name="before_body_end">
+			<remove name="tm_googlemap_embed"/>
+		</reference>
+	</contacts_index_index>
+</layout>

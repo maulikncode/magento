@@ -1,0 +1,63 @@
+<?php if ($posts = $this->getRecent()): ?>
+
+<?php
+    $postsItem = count($posts);
+    if($postsItem > 4)  {
+        $_sliderOnOf = "homeSider3";
+        $_itemwidth = "free";
+        $_homeIndent = "homeIndent";
+        $_slidControl3 = '<div class="home-carousel-control">
+            <a class="carousel-prev3 fa fa-chevron-left" href="#"></a>
+                <a class="carousel-next3 fa fa-chevron-right" href="#"></a>
+        </div>';
+    } else {
+        $_sliderOnOf = "grid-clol-6";
+        $_itemwidth = "col-item4";
+    }
+?>
+
+    <div class="blog-bg">
+        <div class="widget-latest <?php echo $_homeIndent;?>">
+            <div class="page-title category-title center">
+                <h1><?php echo Mage::helper('blog')->__('Latest Posts');  ?></h1>
+            </div>
+            <ul class="<?php echo $_sliderOnOf;?>">
+                <?php $i = 0; ?>
+                <?php foreach ($posts as $post): ?>
+                    <?php if ($i<5): ?>
+                        <li class="<?php echo $_itemwidth; ?>">
+                            <div class="wrapper-hover">
+                                <div class="widget-latest-title"><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></div>
+                                <div class="postContent"><?php echo Mage::helper('cms')->getBlockTemplateProcessor()->filter($post->getShortContent()); ?></div>
+                                <div class="widget-latest-details">
+                                    <?php // $post->setCreatedTime($this->formatDate($post->getCreatedTime(), "long", false)); ?>
+                                    <?php //echo $post->getCreatedTime(); ?>
+                                    <?php $_ct= new Zend_Date($post->getCreatedTime()); ?>
+                                    <span class="widget-latest-data"><i class="fa fa-clock-o"></i> <?php echo $_ct->toString(); ?></span>
+                                    <a class="widget-latest-comment" href="<?php echo $post->getAddress(); ?>#commentBox" >
+                                         <i class="fa fa-comment-o"></i>
+                                        <?php if ($post->getCommentCount() > 0): ?>
+                                            <?php echo $post->getCommentCount(); ?> <?php echo Mage::helper('blog')->__('Comments'); ?>
+                                        <?php endif; ?>
+                                         <?php if ($post->getCommentCount() < 1): ?> 
+                                            <?php echo "0"; ?> <?php echo Mage::helper('blog')->__('Comments'); ?>
+                                        <?php endif; ?>
+                                    </a>
+                                    <span class="postDetails-user">
+                                        <i class="fa fa-user"></i>
+                                        <?php echo $post->getUser(); ?>
+                                    </span>
+                                </div>
+                                <a class="noSwipe" href="<?php echo $post->getAddress(); ?>"class="aw-blog-read-more all-blog"><?php echo Mage::helper('blog')->__('Read more');  ?></a>
+                            </div>
+                        </li>
+                    <?php endif; ?>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+            </ul>
+            <?php echo "$_slidControl3"; ?>
+           <!-- <a href="<?php // echo $this->getBlogUrl() ?>"class="aw-blog-read-more all-blog"><?php // echo Mage::helper('blog')->__('View all posts');  ?></a> -->
+        </div>
+    </div>
+<?php endif; ?>
+<?php // $tt = count($this->getRecent()); print_r($tt) ; ?>

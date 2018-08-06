@@ -1,0 +1,10 @@
+.block-embed-googlemap {
+  position: relative;
+  text-align: center;
+}
+.block-embed-googlemap .block-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

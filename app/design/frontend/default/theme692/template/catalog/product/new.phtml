@@ -1,0 +1,107 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+?>
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<?php
+    $_collectionSize = $_products->getSize();
+
+        if($_collectionSize > 6)  {
+            $_sliderOnOf = "homeSider";
+            $_itemwidth = "free";
+            $_homeIndent = "homeIndent";
+            $_slidControl = '<div class="home-carousel-control">
+                <a class="carousel-prev fa fa-chevron-left" href="#"></a>
+                    <a class="carousel-next fa fa-chevron-right" href="#"></a>
+            </div>';
+        } else {
+            $_sliderOnOf = "grid-clol-6";
+            $_itemwidth = "col-item6";
+            }
+?>
+
+<div class="home-id <?php echo $_homeIndent;?>">
+    <div class="page-title category-title center">
+            <h1><?php echo $this->__('New Products') ?></h1>
+    </div>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+        <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+            <?php if ($i++%$_columnCount==0): ?>
+            <ul class="products-grid new_triger <?php echo $_sliderOnOf;?>">
+            <?php endif ?>
+                <li class="item <?php echo $_itemwidth; ?> <?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>" itemscope itemtype="http://schema.org/product">
+                    <div class="wrapper-hover">
+                        <a  href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image noSwipe" itemprop="url"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(250, 383); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" itemprop="image"/></a>
+                        <div class="product-shop">
+                            <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+                            <h3 class="product-name">
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" itemprop="name">
+                                    <?php $small_getName = strip_tags($this->htmlEscape($_product->getName()));
+                                     if (strlen($small_getName) < 20) echo($small_getName);
+                                     else { echo mb_substr($small_getName, 0, 20,'UTF-8').'...';} ?>
+                                </a>
+                            </h3> 
+                            <div class="desc_grid"><?php $small_getDescription = strip_tags($_product->getShortDescription());
+                                 if (strlen($small_getDescription) < 80) echo($small_getDescription);
+                                 else { echo mb_substr($small_getDescription, 0, 80,'UTF-8').'...';} ?>
+                             </div>
+                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                            <div class="actions noSwipe">
+                                <?php if($_product->isSaleable()): ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button noSwipe btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                <?php else: ?>
+                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>
+                                <ul class="add-to-links">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <li><a href="<?php echo $this->getAddToWishlistUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                                        <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php $_product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+                        <div class="label-product">             
+                            <?php if($_product->getData('new')){echo '<span class="new">'.$this->__('New').'</span>';  }?>
+                            <?php if($_product->getData('sale')){echo '<span class="sale">'.$this->__('Sale').'</span>';  }?>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+            <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+            </ul>
+            <?php echo "$_slidControl"; ?>
+            <?php endif ?>
+        <?php endforeach; ?>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php endif; ?>
+</div>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('video_block')->toHtml() ?>

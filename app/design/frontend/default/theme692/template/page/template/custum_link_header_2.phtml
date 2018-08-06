@@ -1,0 +1,8 @@
+<div class="link-extra">
+    <?php if (Mage::getSingleton('customer/session')->isLoggedIn()==0): ?>
+        <a class="but-link skip-account" href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Log In') ?></a>
+    <?php else: ?>
+        <a class="but-link skip-account" href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Log Out') ?></a>
+    <?php endif ?>
+      <button type="button" title="<?php echo $this->__('Checkout') ?>" class="button" onclick="setLocation('<?php echo $this->getUrl('checkout/onepage/') ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+</div>

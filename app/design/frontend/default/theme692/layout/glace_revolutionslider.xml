@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+			<action method="addCss"><stylesheet>glace_revolutionslider/css/settings.css</stylesheet></action>
+			<action method="addCss"><stylesheet>glace_revolutionslider/css/captions.css</stylesheet></action>
+			<!-- <action method="addJs"><script>glace/jquery-1.8.3.min.js</script></action> -->
+			<action method="addItem"><type>skin_js</type><name>glace_revolutionslider/js/jquery.themepunch.plugins.min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>glace_revolutionslider/js/jquery.themepunch.revolution.min.js</name></action>
+        </reference>
+    </default>
+    <revolutionslider_index_index>
+        <reference name="content">
+            <block type="revolutionslider/revolutionslider" name="revolutionslider" template="glace_revolutionslider/revolutionslider.phtml" />
+        </reference>
+    </revolutionslider_index_index>
+</layout> 

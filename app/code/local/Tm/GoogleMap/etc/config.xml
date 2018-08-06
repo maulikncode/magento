@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Tm_GoogleMap>
+			<version>0.1.0</version>		
+		</Tm_GoogleMap>
+	</modules>
+	<frontend>
+		<layout>
+			<updates>
+				<googlemap>
+					<file>tm_googlemap.xml</file>
+				</googlemap>
+			</updates>
+		</layout>		
+	</frontend>	
+	<global>	
+		<models>
+			<googlemap>
+				<class>Tm_GoogleMap_Model</class>
+			</googlemap>
+		</models>
+		<helpers>
+			<googlemap>
+				<class>Tm_GoogleMap_Helper</class>
+			</googlemap>
+		</helpers>		
+	</global>
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+	                <title>Allow everything</title>
+	            </all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<googlemap translate="title" module="googlemap">
+											<title>Tm_GoogleMap Section</title>
+										</googlemap>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+</config>
